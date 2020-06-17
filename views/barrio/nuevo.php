@@ -3,7 +3,7 @@
 <!-- breadcrumb -->
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="?c=barrio&a=index">Barrio Index</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo URL_ROOT; ?>/barrios/">Barrio Index</a></li>
     <li class="breadcrumb-item active" aria-current="page">Nuevo Barrio</li>
   </ol>
 </nav>
@@ -23,7 +23,7 @@
                 <input
                     type="text"
                     name="barrio_descripcion"
-                    value="<?php echo $barrio->barrio_descripcion; ?>"
+                    value="<?php echo $context['barrio']->barrio_descripcion; ?>"
                     class="form-control"
                     placeholder="Vista Alegre"
                     data-validacion-tipo="requerido"
@@ -37,7 +37,7 @@
                     required
                 >
                     <option value="">Seleccione una Ciudad</option>
-                    <?php foreach ($ciudades as $ciudad): ?>
+                    <?php foreach ($context['ciudades'] as $ciudad): ?>
                         <option value="<?php echo $ciudad->ciudad_codigo; ?>">
                             <?php echo $ciudad->ciudad_descripcion; ?>
                         </option>

@@ -1,7 +1,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Alta de Barrios</h1>
     <a
-        href="?c=barrio&a=nuevo"
+        href="<?php echo URL_ROOT; ?>/barrios/nuevo"
         class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"
     >
         <i class="fas fa-plus fa-sm text-white-50"></i> Nuevo
@@ -31,7 +31,7 @@
             </tr>
             </tfoot>
             <tbody>
-            <?php foreach ($barrios as $barrio): ?>
+            <?php foreach ($context['barrios'] as $barrio): ?>
                 <tr>
                     <td><?php echo $barrio->barrio_codigo ?></td>
                     <td><?php echo $barrio->barrio_descripcion ?></td>
@@ -39,7 +39,7 @@
                     <td>
                         <a
                             class="btn btn-primary btn-icon-split btn-sm"
-                            href="?c=barrio&a=ver&barrio_codigo=<?php echo $barrio->barrio_codigo; ?>"
+                            href="<?php echo URL_ROOT; ?>/barrios/ver/<?php echo $barrio->barrio_codigo; ?>"
                         >
                             <span class="icon text-white-50">
                                 <i class="fas fa-edit"></i>

@@ -1,88 +1,72 @@
 <?php
+    class Pais {
 
-class Pais {
+        private $pdo;
+        public $pais_codigo;
+        public $pais_descripcion;
 
-    private $pdo;
-    public $pais_codigo;
-    public $pais_descripcion;
+        public function __CONSTRUCT()
+        {
+            $this->db = new Database;
+        }
 
-    public function __CONSTRUCT()
-    {
-        try {
-            $this->pdo = Database::Conectar();
-        } catch (Exception $e) {
-            die($e->getMessage());
+        public function Listar()
+        {
+            $this->db->query("SELECT * FROM pais");
+            return $this->db->resultSet();
+        }
+
+        public function Obtener($pais_codigo)
+        {
+            $this->db->query(
+                "SELECT * FROM pais
+                WHERE pais_codigo=:pais_codigo"
+            );
+            $this->db->bind(':pais_codigo', intval($pais_codigo));
+            return $this->db->result();
+        }
+
+        public function Registrar(Pais $data)
+        {
+            $this->db->query(
+                "INSERT INTO pais (pais_descripcion)
+                VALUES (:pais_descripcion)"
+            );
+            $this->db->bind(':pais_descripcion', $data->pais_descripcion);
+            if($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function Actualizar(Pais $data)
+        {
+            $this->db->query(
+                "UPDATE pais
+                SET pais_descripcion=:pais_descripcion
+                WHERE pais_codigo=:pais_codigo"
+            );
+            $this->db->bind(':pais_descripcion', $data->pais_descripcion);
+            $this->db->bind(':pais_codigo', $data->pais_codigo);
+            if($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function Eliminar($pais_codigo)
+        {
+            $this->db->query(
+                "DELETE FROM pais
+                WHERE pais_codigo=:pais_codigo"
+            );
+            $this->db->bind(':pais_codigo', intval($pais_codigo));
+            if($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
-
-    public function Listar()
-    {
-        try {
-            $stm = $this->pdo
-                ->prepare("SELECT * FROM pais");
-            $stm->execute();
-            return $stm->fetchAll(PDO::FETCH_OBJ);
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
-
-    public function Obtener($pais_codigo)
-    {
-        try {
-            $params = array('pais_codigo' => intval($pais_codigo));
-            $stm = $this->pdo
-                ->prepare(
-                    "SELECT * FROM pais
-                    WHERE pais_codigo=:pais_codigo");
-            $stm->execute($params);
-            return $stm->fetch(PDO::FETCH_OBJ);
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
-
-    public function Registrar(Pais $data) {
-        try {
-            $params = array(
-                'pais_descripcion' => $data->pais_descripcion);
-            $this->pdo
-                ->prepare(
-                    "INSERT INTO pais (pais_descripcion)
-                    VALUES (:pais_descripcion)")
-                ->execute($params);
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
-
-    public function Actualizar(Pais $data) {
-        try {
-            $params = array(
-                'pais_descripcion' => $data->pais_descripcion,
-                'pais_codigo' => $data->pais_codigo);
-            $this->pdo
-                ->prepare(
-                    "UPDATE pais
-                    SET pais_descripcion=:pais_descripcion
-                    WHERE pais_codigo=:pais_codigo;")
-                ->execute($params);
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
-
-    public function Eliminar($pais_codigo) {
-        try {
-            $params = array(
-                'pais_codigo' => intval($pais_codigo));
-            $this->pdo
-                ->prepare(
-                    "DELETE FROM pais
-                    WHERE pais_codigo=:pais_codigo")
-                ->execute($params);
-        } catch (Exception $e) {
-            die($e->getMessage());
-        }
-    }
-}

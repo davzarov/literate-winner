@@ -1,13 +1,13 @@
 <!-- header -->
 <h1 class="h3 mb-2 text-gray-800 mb-4">
-    <?php echo $barrio->barrio_codigo != null ? 'Editar '.$barrio->barrio_descripcion : 'Editar Barrio'; ?>
+    <?php echo $context['barrio']->barrio_codigo != null ? 'Editar '.$context['barrio']->barrio_descripcion : 'Editar Barrio'; ?>
 </h1>
 <!-- breadcrumb -->
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="?c=barrio&a=index">Barrio Index</a></li>
     <li class="breadcrumb-item active" aria-current="page">
-        <?php echo $barrio->barrio_codigo != null ? 'Editar '.$barrio->barrio_descripcion : 'Editar Barrio'; ?>
+        <?php echo $context['barrio']->barrio_codigo != null ? 'Editar '.$context['barrio']->barrio_descripcion : 'Editar Barrio'; ?>
     </li>
   </ol>
 </nav>
@@ -23,14 +23,14 @@
             <input
                 type="hidden"
                 name="barrio_codigo"
-                value="<?php echo $barrio->barrio_codigo; ?>"
+                value="<?php echo $context['barrio']->barrio_codigo; ?>"
             />
             <div class="form-group">
                 <label>Descripción</label>
                 <input
                     type="text"
                     name="barrio_descripcion"
-                    value="<?php echo $barrio->barrio_descripcion; ?>"
+                    value="<?php echo $context['barrio']->barrio_descripcion; ?>"
                     class="form-control"
                     placeholder="Vista Alegre"
                     data-validacion-tipo="requerido"
@@ -44,7 +44,7 @@
                     required
                 >
                     <option value="">Seleccione una Ciudad</option>
-                    <?php foreach ($ciudades as $ciudad): ?>
+                    <?php foreach ($context['ciudades'] as $ciudad): ?>
                         <option value="<?php echo $ciudad->ciudad_codigo; ?>">
                             <?php echo $ciudad->ciudad_descripcion; ?>
                         </option>
