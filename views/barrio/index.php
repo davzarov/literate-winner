@@ -1,3 +1,5 @@
+<?php require APP_ROOT.'/views/layout_upper.php'; ?>
+<?php flash('barrio_mensaje'); ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Alta de Barrios</h1>
     <a
@@ -52,7 +54,7 @@
                         <a
                             class="btn btn-danger btn-icon-split btn-sm confirm-modal"
                             data-toggle="modal"
-                            data-action="?c=barrio&a=eliminar&barrio_codigo=<?php echo $barrio->barrio_codigo; ?>"
+                            data-action="<?php echo URL_ROOT; ?>/barrios/eliminar/<?php echo $barrio->barrio_codigo; ?>"
                             href="#confirmModal"
                         >
                             <span class="icon text-white-50">
@@ -78,7 +80,8 @@
             var modal = $(this);
             modal.find('.modal-title').text('¿Seguro de eliminar este registro?');
             modal.find('.modal-body').text('Ésta acción es irreversible, confirme para seguir adelante.');
-            modal.find('a.btn-danger').attr('href', action);
+            modal.find('form').attr('action', action);
         });
     });
 </script>
+<?php require APP_ROOT.'/views/layout_under.php'; ?>

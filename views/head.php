@@ -10,7 +10,7 @@
     rel="stylesheet"
 />
 <!-- custom styles -->
-<link rel="stylesheet" href="assets/css/sb-admin-2.min.css">
+<link rel="stylesheet" href="<?php echo URL_ROOT; ?>/assets/css/sb-admin-2.min.css">
 <!-- JQuery -->
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
@@ -18,10 +18,16 @@
     crossorigin="anonymous"
 ></script>
 <!-- dataTables styles -->
+<link 
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/css/dataTables.bootstrap4.min.css"
+    integrity="sha256-F+DaKAClQut87heMIC6oThARMuWne8+WzxIDT7jXuPA=" crossorigin="anonymous" />
+
 <?php
-if (isset($_GET["a"]) && $_GET["a"] === "index")
-    echo("<link 
-    rel='stylesheet'
-    href='https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/css/dataTables.bootstrap4.min.css'
-    integrity='sha256-F+DaKAClQut87heMIC6oThARMuWne8+WzxIDT7jXuPA=' crossorigin='anonymous' />");
+    // si nos ubicamos en la página indice de un controlador cargar dataTables
+    // if (isset($_GET["a"]) && $_GET["a"] === "index")
+    //     echo("<link
+    //     rel='stylesheet'
+    //     href='https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/css/dataTables.bootstrap4.min.css'
+    //     integrity='sha256-F+DaKAClQut87heMIC6oThARMuWne8+WzxIDT7jXuPA=' crossorigin='anonymous' />");
 ?>

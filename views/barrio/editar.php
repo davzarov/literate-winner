@@ -1,3 +1,4 @@
+<?php require APP_ROOT.'/views/layout_upper.php'; ?>
 <!-- header -->
 <h1 class="h3 mb-2 text-gray-800 mb-4">
     <?php echo $context['barrio']->barrio_codigo != null ? 'Editar '.$context['barrio']->barrio_descripcion : 'Editar Barrio'; ?>
@@ -5,7 +6,7 @@
 <!-- breadcrumb -->
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="?c=barrio&a=index">Barrio Index</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo URL_ROOT; ?>/barrios">Barrio Index</a></li>
     <li class="breadcrumb-item active" aria-current="page">
         <?php echo $context['barrio']->barrio_codigo != null ? 'Editar '.$context['barrio']->barrio_descripcion : 'Editar Barrio'; ?>
     </li>
@@ -16,7 +17,7 @@
     <div class="card-body">
         <form
             id="frm-barrio"
-            action="?c=barrio&a=editar"
+            action="<?php echo URL_ROOT; ?>/barrios/editar/<?php echo $context['barrio']->barrio_codigo; ?>"
             method="POST"
             enctype="multipart/form-data"
         >
@@ -45,7 +46,12 @@
                 >
                     <option value="">Seleccione una Ciudad</option>
                     <?php foreach ($context['ciudades'] as $ciudad): ?>
-                        <option value="<?php echo $ciudad->ciudad_codigo; ?>">
+                        <option
+                            value="<?php echo $ciudad->ciudad_codigo; ?>"
+                            <?php if($ciudad->ciudad_codigo == $context['barrio']->ciudad_codigo):
+                                echo("selected"); ?>
+                            <?php endif; ?>
+                        >
                             <?php echo $ciudad->ciudad_descripcion; ?>
                         </option>
                     <?php endforeach; ?>
@@ -66,3 +72,4 @@
         });
     })
 </script>
+<?php require APP_ROOT.'/views/layout_under.php'; ?>

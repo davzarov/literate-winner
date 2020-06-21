@@ -18,13 +18,14 @@
             $this->view('barrio/index', $context);
         }
 
-        public function ver()
+        public function ver($barrio_codigo)
         {
-            if (!isset($_GET['barrio_codigo']))
-                redirect('barrios');
-            $barrio = $this->barrioModel->Obtener($_GET['barrio_codigo']);
-            $ciudades = $this->ciudadModel->Listar();
-            require_once('views/barrio/editar.php');
+            $barrio = $this->barrioModel->Obtener($barrio_codigo);
+            $context = [
+                'barrio' => $barrio,
+                'ciudades' => $this->ciudadModel->Listar()
+            ];
+            $this->view('barrio/editar', $context);
         }
 
         public function nuevo()
@@ -54,13 +55,13 @@
             }
         }
 
-        public function editar()
+        public function editar($barrio_codigo)
         {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
                 $barrio = new Barrio();
-                $barrio->barrio_codigo = $_POST['barrio_codigo'];
+                $barrio->barrio_codigo = $barrio_codigo;
                 $barrio->barrio_descripcion = $_POST['barrio_descripcion'];
                 $barrio->ciudad_codigo = $_POST['ciudad_codigo'];
 
@@ -74,11 +75,15 @@
             }
         }
 
-        public function eliminar()
+        public function eliminar($barrio_codigo)
         {
-            if (!isset($_GET['barrio_codigo']))
-                return view('home', 'error');
-            $this->barrioModel->Eliminar($_GET['barrio_codigo']);
-            header("location: index.php?c=barrio&a=index");
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if($this->barrioModel->Eliminar($barrio_codigo)) {
+                    flash('barrio_mensaje', 'Se ha eliminado correctamente.');
+                    redirect('barrios');
+                } else {
+                    die('Ha ocurrido un error.');
+                }
+            }
         }
     }

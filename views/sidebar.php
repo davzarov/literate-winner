@@ -3,14 +3,14 @@
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
     <!-- <div class="sidebar-brand-icon">
       <img
-        src="assets/images/iso.png"
+        src="<?php // echo URL_ROOT; ?>/assets/images/iso.png"
         height="40"
         alt="Universidad Americana"
       >
     </div> -->
     <img
       class="sidebar-brand-text"
-      src="assets/images/logo-uamericana-white.png"
+      src="<?php echo URL_ROOT; ?>/assets/images/logo-uamericana-white.png"
       height="40"
       alt="Universidad Americana"
     >

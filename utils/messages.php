@@ -19,7 +19,7 @@
             // Si el mensaje existe, lo mostramos
         } elseif (!empty($_SESSION[$name]) && empty($message)) {
             $class = !empty($_SESSION[$name . '_class']) ? $_SESSION[$name . '_class'] : 'success';
-            echo('<div class="' . $class . '" id="msg-flash">' . $_SESSION[$name] . '</div>');
+            echo('<div class="' . $class . '" role="alert" id="msg-flash">' . $_SESSION[$name] . '</div>');
             unset($_SESSION[$name]);
             unset($_SESSION[$name . '_class']);
         }

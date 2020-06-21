@@ -38,8 +38,8 @@
                 "INSERT INTO barrio (ciudad_codigo, barrio_descripcion)
                 VALUES (:ciudad_codigo, :barrio_descripcion)"
             );
-            $this->db->bind(':barrio_descripcion', $data->barrio_descripcion);
             $this->db->bind(':ciudad_codigo', intval($data->ciudad_codigo));
+            $this->db->bind(':barrio_descripcion', $data->barrio_descripcion);
             if($this->db->execute()) {
                 return true;
             } else {

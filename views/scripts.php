@@ -11,7 +11,7 @@
     crossorigin="anonymous"
 ></script>
 <!-- custom scripts -->
-<script src="assets/js/sb-admin-2.min.js"></script>
+<script src="<?php echo URL_ROOT; ?>/assets/js/sb-admin-2.min.js"></script>
 <!-- charts -->
 <!-- <script
     src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js'
@@ -19,15 +19,26 @@
     crossorigin='anonymous'
 ></script> -->
 <!-- dataTables scripts -->
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.min.js"
+    integrity="sha256-t5ZQTZsbQi8NxszC10CseKjJ5QeMw5NINtOXQrESGSU="
+    crossorigin="anonymous"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/dataTables.bootstrap4.min.js"
+    integrity="sha256-hJ44ymhBmRPJKIaKRf3DSX5uiFEZ9xB/qx8cNbJvIMU="
+    crossorigin="anonymous"></script>
+<script src="<?php echo URL_ROOT; ?>/assets/js/init-datatables.js"></script>
+
 <?php
-if (isset($_GET["a"]) && $_GET["a"] === "index")
-    echo("<script
-        src='https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.min.js'
-        integrity='sha256-t5ZQTZsbQi8NxszC10CseKjJ5QeMw5NINtOXQrESGSU='
-        crossorigin='anonymous'></script>
-    <script
-        src='https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/dataTables.bootstrap4.min.js'
-        integrity='sha256-hJ44ymhBmRPJKIaKRf3DSX5uiFEZ9xB/qx8cNbJvIMU='
-        crossorigin='anonymous'></script>
-    <script src='assets/js/init-datatables.js'></script>");
+    // si nos ubicamos en la página indice de un controlador cargar dataTables
+    // if (isset($_GET["a"]) && $_GET["a"] === "index")
+    //     echo("<script
+    //         src='https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/jquery.dataTables.min.js'
+    //         integrity='sha256-t5ZQTZsbQi8NxszC10CseKjJ5QeMw5NINtOXQrESGSU='
+    //         crossorigin='anonymous'></script>
+    //     <script
+    //         src='https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.19/js/dataTables.bootstrap4.min.js'
+    //         integrity='sha256-hJ44ymhBmRPJKIaKRf3DSX5uiFEZ9xB/qx8cNbJvIMU='
+    //         crossorigin='anonymous'></script>
+    //     <script src='assets/js/init-datatables.js'></script>");
 ?>

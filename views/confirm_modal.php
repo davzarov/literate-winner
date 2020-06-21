@@ -19,7 +19,9 @@
             <div class="modal-body"></div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-danger" href="index.php">Eliminar</a>
+                <form action="" method="POST">
+                    <button class="btn btn-danger" type="submit">Eliminar</button>
+                </form>
             </div>
         </div>
     </div>
