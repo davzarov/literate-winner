@@ -1,67 +1,94 @@
 <?php
-    require_once('models/usuario.php');
-    require_once('models/persona.php');
+    class Roles extends Controller {
 
-    class RolController {
-        private $rol_model;
+        private $usuarioModel;
+        private $personaModel;
+        private $rolModel;
 
         public function __CONSTRUCT()
         {
-            $this->usuario_model = new Usuario();
-            $this->persona_model = new Persona();
-            $this->rol_model = new Rol();
+            $this->usuarioModel = $this->model('Usuario');
+            $this->personaModel = $this->model('Persona');
+            $this->rolModel = $this->model('Rol');
         }
 
         public function index()
         {
-            $roles = $this->rol_model->Listar();
-            require_once('views/roles/index.php');
+            $context = [
+                'roles' => $this->rolModel->Listar()
+            ];
+            $this->view('roles/index', $context);
         }
 
-        public function ver()
+        public function ver($rol_codigo)
         {
-            if (!isset($_GET['rol_codigo']))
-                return view('home', 'error');
-            $rol = $this->rol_model->Obtener($_GET['rol_codigo']);
-            $usuarios = $this->usuario_model->Listar();
-            $personas = $this->persona_model->Listar();
-            require_once('views/roles/editar.php');
+            $rol = $this->rolModel->Obtener($rol_codigo);
+            $context = [
+                'rol' => $rol,
+                'usuarios' => $this->usuarioModel->Listar(),
+                'personas' => $this->personaModel->Listar()
+            ];
+            $this->view('roles/editar', $context);
         }
 
         public function nuevo()
         {
-            $rol = new Rol();
-            $usuarios = $this->usuario_model->Listar();
-            $personas = $this->persona_model->Listar();
-            require_once('views/roles/nuevo.php');
+            $context = [
+                'rol' => new Rol(),
+                'usuarios' => $this->usuarioModel->Listar(),
+                'personas' => $this->personaModel->Listar()
+            ];
+            $this->view('roles/nuevo', $context);
         }
 
         public function guardar()
         {
-            $rol = new Rol();
-            $rol->rol_descripcion = $_POST['rol_descripcion'];
-            $rol->usuario_codigo = $_POST['usuario_codigo'];
-            $rol->persona_codigo = $_POST['persona_codigo'];
-            $this->rol_model->Registrar($rol);
-            header("location: index.php?c=roles&a=index");
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $rol = new Rol();
+                $rol->rol_descripcion = $_POST['rol_descripcion'];
+                $rol->usuario_codigo = $_POST['usuario_codigo'];
+                $rol->persona_codigo = $_POST['persona_codigo'];
+
+                if($this->rolModel->Registrar($rol)) {
+                    flash('roles_mensaje', 'Se ha agregado correctamente.');
+                    redirect('roles');
+                } else {
+                    die('Ha ocurrido un error');
+                }
+            }
         }
 
-        public function editar()
+        public function editar($rol_codigo)
         {
-            $rol = new Rol();
-            $rol->rol_codigo = $_POST['rol_codigo'];
-            $rol->rol_descripcion = $_POST['rol_descripcion'];
-            $rol->usuario_codigo = $_POST['usuario_codigo'];
-            $rol->persona_codigo = $_POST['persona_codigo'];
-            $this->rol_model->Actualizar($rol);
-            header("location: index.php?c=roles&a=index");
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $rol = new Rol();
+                $rol->rol_codigo = $rol_codigo;
+                $rol->rol_descripcion = $_POST['rol_descripcion'];
+                $rol->usuario_codigo = $_POST['usuario_codigo'];
+                $rol->persona_codigo = $_POST['persona_codigo'];
+
+                if($this->rolModel->Actualizar($rol)) {
+                    flash('roles_mensaje', 'Se ha modificado correctamente.');
+                    redirect('roles');
+                } else {
+                    die('Ha ocurrido un error.');
+                }
+            }
         }
 
-        public function eliminar()
+        public function eliminar($rol_codigo)
         {
-            if (!isset($_GET['rol_codigo']))
-                return view('home', 'error');
-            $this->rol_model->Eliminar($_GET['rol_codigo']);
-            header("location: index.php?c=roles&a=index");
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                if($this->rolModel->Eliminar($rol_codigo)) {
+                    flash('roles_mensaje', 'Se ha eliminado correctamente.');
+                    redirect('roles');
+                } else {
+                    die('Ha ocurrido un error.');
+                }
+            }
         }
     }
