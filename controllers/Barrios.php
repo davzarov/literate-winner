@@ -71,7 +71,6 @@
                 } else {
                     die('Ha ocurrido un error.');
                 }
-                
             }
         }
 

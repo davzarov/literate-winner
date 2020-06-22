@@ -72,7 +72,6 @@
         </div>
     </div>
 </div>
-
 <script>
     $(document).ready(function () {
         $('#confirmModal').on('show.bs.modal', function (event) {

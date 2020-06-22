@@ -51,7 +51,6 @@
         </form>
     </div>
 </div>
-
 <script>
     $(document).ready(function () {
         $("#frm-barrio").submit(function () {
