@@ -1,13 +1,14 @@
+<?php require APP_ROOT.'/views/layout_upper.php'; ?>
 <!-- header -->
 <h1 class="h3 mb-2 text-gray-800 mb-4">
-    <?php echo $pais->pais_codigo != null ? 'Editar '.$pais->pais_descripcion : 'Editar País'; ?>
+    <?php echo $context['pais']->pais_codigo != null ? 'Editar '.$context['pais']->pais_descripcion : 'Editar País'; ?>
 </h1>
 <!-- breadcrumb -->
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="?c=pais&a=index">País Index</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo URL_ROOT; ?>/paises">País Index</a></li>
     <li class="breadcrumb-item active" aria-current="page">
-        <?php echo $pais->pais_codigo != null ? 'Editar '.$pais->pais_descripcion : 'Editar País'; ?>
+        <?php echo $context['pais']->pais_codigo != null ? 'Editar '.$context['pais']->pais_descripcion : 'Editar País'; ?>
     </li>
   </ol>
 </nav>
@@ -16,23 +17,23 @@
     <div class="card-body">
         <form
             id="frm-pais"
-            action="?c=pais&a=editar"
+            action="<?php echo URL_ROOT; ?>/paises/editar/<?php echo $context['pais']->pais_codigo; ?>"
             method="POST"
             enctype="multipart/form-data"
         >
             <input
                 type="hidden"
                 name="pais_codigo"
-                value="<?php echo $pais->pais_codigo; ?>"
+                value="<?php echo $context['pais']->pais_codigo; ?>"
             />
             <div class="form-group">
                 <label>Descripción</label>
                 <input
                     type="text"
                     name="pais_descripcion"
-                    value="<?php echo $pais->pais_descripcion; ?>"
+                    value="<?php echo $context['pais']->pais_descripcion; ?>"
                     class="form-control"
-                    placeholder="Femenino"
+                    placeholder="Paraguay"
                     data-validacion-tipo="requerido"
                 />
             </div>
@@ -43,7 +44,6 @@
         </form>
     </div>
 </div>
-
 <script>
     $(document).ready(function () {
         $("#frm-pais").submit(function () {
@@ -51,3 +51,4 @@
         });
     })
 </script>
+<?php require APP_ROOT.'/views/layout_under.php'; ?>

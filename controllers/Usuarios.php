@@ -43,13 +43,13 @@
 
                 if ($_POST['usuario_password'] === $_POST['usuario_password_confirmacion']) {
                     if($this->usuarioModel->Registrar($usuario)) {
-                        flash('usuario_mensaje', 'Se ha agregado correctamente.');
+                        flash('mensaje_flash', 'Se ha agregado correctamente.');
                         redirect('usuarios');
                     } else {
                         die('Ha ocurrido un error.');
                     }
                 } else {
-                    flash('usuario_mensaje', 'Las contraseñas no coinciden.');
+                    flash('mensaje_flash', 'Las contraseñas no coinciden.');
                     die;
                 }
             }
@@ -72,18 +72,18 @@
                     if ($_POST['usuario_password'] === $_POST['usuario_password_confirmacion']) {
     
                         if($this->usuarioModel->Actualizar($usuario_modificado)) {
-                            flash('usuario_mensaje', 'Se ha modificado correctamente.');
+                            flash('mensaje_flash', 'Se ha modificado correctamente.');
                             redirect('usuarios');
                         } else {
                             die('Ha ocurrido un error.');
                         }
                     } else {
-                        flash('usuario_mensaje', 'Las contraseñas no coinciden.');
+                        flash('mensaje_flash', 'Las contraseñas no coinciden.');
                         redirect('usuarios/editar/'.$usuario->usuario_codigo);
                         die;
                     }
                 } else {
-                    flash('usuario_mensaje', 'Su contraseña anterior no es correcta.');
+                    flash('mensaje_flash', 'Su contraseña anterior no es correcta.');
                     redirect('usuarios/editar/'.$usuario->usuario_codigo);
                     die;
                 }
@@ -94,7 +94,7 @@
         {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if($this->usuarioModel->Eliminar($usuario_codigo)) {
-                    flash('usuario_mensaje', 'Se ha eliminado correctamente.');
+                    flash('mensaje_flash', 'Se ha eliminado correctamente.');
                     redirect('usuarios');
                 } else {
                     die('Ha ocurrido un error.');

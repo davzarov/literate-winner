@@ -42,7 +42,7 @@
                 $tipo_persona->tipo_persona_descripcion = $_POST['tipo_persona_descripcion'];
 
                 if($this->tipoPersonaModel->Registrar($tipo_persona)) {
-                    flash('tipo_persona_mensaje', 'Se ha agregado correctamente.');
+                    flash('mensaje_flash', 'Se ha agregado correctamente.');
                     redirect('tipo_personas');
                 } else {
                     die('Ha ocurrido un error.');
@@ -60,7 +60,7 @@
                 $tipo_persona->tipo_persona_descripcion = $_POST['tipo_persona_descripcion'];
 
                 if($this->tipoPersonaModel->Actualizar($tipo_persona)) {
-                    flash('tipo_persona_mensaje', 'Se ha modificado correctamente.');
+                    flash('mensaje_flash', 'Se ha modificado correctamente.');
                     redirect('tipo_personas');
                 } else {
                     die('Ha ocurrido un error.');
@@ -72,7 +72,7 @@
         {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if($this->tipoPersonaModel->Eliminar($tipo_persona_codigo)) {
-                    flash('tipo_persona_mensaje', 'Se ha eliminado correctamente.');
+                    flash('mensaje_flash', 'Se ha eliminado correctamente.');
                     redirect('tipo_personas');
                 } else {
                     die('Ha ocurrido un error.');

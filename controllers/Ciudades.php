@@ -46,7 +46,7 @@
                 $ciudad->ciudad_descripcion = $_POST['ciudad_descripcion'];
                 $ciudad->departamento_codigo = $_POST['departamento_codigo'];
                 if($this->ciudadModel->Registrar($ciudad)) {
-                    flash('ciudad_mensaje', 'Se ha agregado correctamente.');
+                    flash('mensaje_flash', 'Se ha agregado correctamente.');
                     redirect('ciudades');
                 } else {
                     die('Ha ocurrido un error.');
@@ -65,7 +65,7 @@
                 $ciudad->departamento_codigo = $_POST['departamento_codigo'];
 
                 if($this->ciudadModel->Actualizar($ciudad)) {
-                    flash('ciudad_mensaje', 'Se ha modificado correctamente.');
+                    flash('mensaje_flash', 'Se ha modificado correctamente.');
                     redirect('ciudades');
                 } else {
                     die('Ha ocurrido un error.');
@@ -77,7 +77,7 @@
         {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if($this->ciudadModel->Eliminar($ciudad_codigo)) {
-                    flash('ciudad_mensaje', 'Se ha eliminado correctamente.');
+                    flash('mensaje_flash', 'Se ha eliminado correctamente.');
                     redirect('ciudades');
                 } else {
                     die('Ha ocurrido un error.');

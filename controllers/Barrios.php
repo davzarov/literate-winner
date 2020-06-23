@@ -47,7 +47,7 @@
                 $barrio->ciudad_codigo = $_POST['ciudad_codigo'];
                 
                 if($this->barrioModel->Registrar($barrio)) {
-                    flash('barrio_mensaje', 'Se ha agregado correctamente.');
+                    flash('mensaje_flash', 'Se ha agregado correctamente.');
                     redirect('barrios');
                 } else {
                     die('Ha ocurrido un error.');
@@ -66,7 +66,7 @@
                 $barrio->ciudad_codigo = $_POST['ciudad_codigo'];
 
                 if($this->barrioModel->Actualizar($barrio)) {
-                    flash('barrio_mensaje', 'Se ha modificado correctamente.');
+                    flash('mensaje_flash', 'Se ha modificado correctamente.');
                     redirect('barrios');
                 } else {
                     die('Ha ocurrido un error.');
@@ -78,7 +78,7 @@
         {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if($this->barrioModel->Eliminar($barrio_codigo)) {
-                    flash('barrio_mensaje', 'Se ha eliminado correctamente.');
+                    flash('mensaje_flash', 'Se ha eliminado correctamente.');
                     redirect('barrios');
                 } else {
                     die('Ha ocurrido un error.');

@@ -48,7 +48,7 @@
                 $submenu->menu_codigo = $_POST['menu_codigo'];
 
                 if($this->submenuModel->Registrar($submenu)) {
-                    flash('submenu_mensaje', 'Se ha agregado correctamente.');
+                    flash('mensaje_flash', 'Se ha agregado correctamente.');
                     redirect('submenus');
                 } else {
                     die('Ha ocurrido un error.');
@@ -68,7 +68,7 @@
                 $submenu->menu_codigo = $_POST['menu_codigo'];
 
                 if($this->submenuModel->Actualizar($submenu)) {
-                    flash('submenu_mensaje', 'Se ha modificado correctamente.');
+                    flash('mensaje_flash', 'Se ha modificado correctamente.');
                     redirect('submenus');
                 } else {
                     die('Ha ocurrido un error.');
@@ -80,7 +80,7 @@
         {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if($this->submenuModel->Eliminar($submenu_codigo)) {
-                    flash('submenu_mensaje', 'Se ha eliminado correctamente.');
+                    flash('mensaje_flash', 'Se ha eliminado correctamente.');
                     redirect('submenus');
                 } else {
                     die('Ha ocurrido un error.');

@@ -1,7 +1,8 @@
+<?php require APP_ROOT.'/views/layout_upper.php'; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Alta de Tipos de Documento</h1>
     <a
-        href="?c=tipo_documento&a=nuevo"
+        href="<?php echo URL_ROOT; ?>/tipo_documentos/nuevo"
         class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"
     >
         <i class="fas fa-plus fa-sm text-white-50"></i> Nuevo
@@ -29,14 +30,14 @@
             </tr>
             </tfoot>
             <tbody>
-            <?php foreach ($tipo_documentos as $tipo_documento): ?>
+            <?php foreach ($context['tipo_documentos'] as $tipo_documento): ?>
                 <tr>
                     <td><?php echo $tipo_documento->tipo_documento_codigo ?></td>
                     <td><?php echo $tipo_documento->tipo_documento_descripcion ?></td>
                     <td>
                         <a
                             class="btn btn-primary btn-icon-split btn-sm"
-                            href="?c=tipo_documento&a=ver&tipo_documento_codigo=<?php echo $tipo_documento->tipo_documento_codigo; ?>"
+                            href="<?php echo URL_ROOT; ?>/tipo_documentos/ver/<?php echo $tipo_documento->tipo_documento_codigo; ?>"
                         >
                             <span class="icon text-white-50">
                                 <i class="fas fa-edit"></i>
@@ -47,9 +48,10 @@
                         </a>
                         &nbsp;
                         <a
-                            class="btn btn-danger btn-icon-split btn-sm"
-                            onclick="javascript:return confirm('¿Seguro de eliminar este registro?');"
-                            href="?c=tipo_documento&a=eliminar&tipo_documento_codigo=<?php echo $tipo_documento->tipo_documento_codigo; ?>"
+                            class="btn btn-danger btn-icon-split btn-sm confirm-modal"
+                            data-toggle="modal"
+                            data-action="<?php echo URL_ROOT; ?>/tipo_documentos/eliminar/<?php echo $tipo_documento->tipo_documento_codigo; ?>"
+                            href="#confirmModal"
                         >
                             <span class="icon text-white-50">
                                 <i class="fas fa-trash"></i>
@@ -66,3 +68,15 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#confirmModal').on('show.bs.modal', function (event) {
+            var action = $(event.relatedTarget).data('action');
+            var modal = $(this);
+            modal.find('.modal-title').text('¿Seguro de eliminar este registro?');
+            modal.find('.modal-body').text('Ésta acción es irreversible, confirme para seguir adelante.');
+            modal.find('form').attr('action', action);
+        });
+    });
+</script>
+<?php require APP_ROOT.'/views/layout_under.php'; ?>

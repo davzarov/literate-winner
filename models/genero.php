@@ -23,7 +23,7 @@
                 WHERE genero_codigo=:genero_codigo"
             );
             $this->db->bind(':genero_codigo', intval($genero_codigo));
-            $this->db->result();
+            return $this->db->result();
         }
 
         public function Registrar(Genero $data)

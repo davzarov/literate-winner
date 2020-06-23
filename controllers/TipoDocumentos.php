@@ -42,7 +42,7 @@
                 $tipo_documento->tipo_documento_descripcion = $_POST['tipo_documento_descripcion'];
                
                 if($this->tipoDocumentoModel->Registrar($tipo_documento)) {
-                    flash('tipo_documento_mensaje', 'Se ha agregado correctatmente.');
+                    flash('mensaje_flash', 'Se ha agregado correctatmente.');
                     redirect('tipo_documentos');
                 } else {
                     die('Ha ocurrido un error.');
@@ -60,7 +60,7 @@
                 $tipo_documento->tipo_documento_descripcion = $_POST['tipo_documento_descripcion'];
 
                 if($this->tipoDocumentoModel->Actualizar($tipo_documento)) {
-                    flash('tipo_documento_mensaje', 'Se ha modificado correctamente.');
+                    flash('mensaje_flash', 'Se ha modificado correctamente.');
                     redirect('tipo_documentos');
                 } else {
                     die('Ha ocurrido un error.');
@@ -72,7 +72,7 @@
         {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if($this->tipoDocumentoModel->Eliminar($tipo_documento_codigo)) {
-                    flash('tipo_documento_mensaje', 'Se ha eliminado correctamente.');
+                    flash('mensaje_flash', 'Se ha eliminado correctamente.');
                     redirect('tipo_documentos');
                 } else {
                     die('Ha ocurrido un error.');

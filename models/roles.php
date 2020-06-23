@@ -37,7 +37,7 @@
                 WHERE rol_codigo=:rol_codigo"
             );
             $this->db->bind(':rol_codigo', intval($rol_codigo));
-            $this->db->result();
+            return $this->db->result();
         }
 
         public function Registrar(Rol $data)

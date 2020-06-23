@@ -24,7 +24,7 @@
                 WHERE menu_codigo=:menu_codigo"
             );
             $this->db->bind(':menu_codigo', intval($menu_codigo));
-            $this->db->result();
+            return $this->db->result();
         }
 
         public function Registrar(Menu $data)

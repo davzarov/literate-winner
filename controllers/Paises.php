@@ -42,7 +42,7 @@
                 $pais->pais_descripcion = $_POST['pais_descripcion'];
                 
                 if($this->paisModel->Registrar($pais)) {
-                    flash('pais_mensaje', 'Se ha agregado correctamente.');
+                    flash('mensaje_flash', 'Se ha agregado correctamente.');
                     redirect('paises');
                 } else {
                     die('Ha ocurrido un error.');
@@ -60,7 +60,7 @@
                 $pais->pais_descripcion = $_POST['pais_descripcion'];
 
                 if($this->paisModel->Actualizar($pais)) {
-                    flash('pais_mensaje', 'Se ha modificado correctamente.');
+                    flash('mensaje_flash', 'Se ha modificado correctamente.');
                     redirect('paises');
                 } else {
                     die('Ha ocurrido un error.');
@@ -72,7 +72,7 @@
         {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if($this->paisModel->Eliminar($pais_codigo)) {
-                    flash('pais_mensaje', 'Se ha eliminado correctamente.');
+                    flash('mensaje_flash', 'Se ha eliminado correctamente.');
                     redirect('paises');
                 } else {
                     die('Ha ocurrido un error.');

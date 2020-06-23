@@ -1,13 +1,14 @@
+<?php require APP_ROOT.'/views/layout_upper.php'; ?>
 <!-- header -->
 <h1 class="h3 mb-2 text-gray-800 mb-4">
-    <?php echo $tipo_documento->tipo_documento_codigo != null ? 'Editar '.$tipo_documento->tipo_documento_descripcion : 'Editar Tipo Documento'; ?>
+    <?php echo $context['tipo_documento']->tipo_documento_codigo != null ? 'Editar '.$context['tipo_documento']->tipo_documento_descripcion : 'Editar Tipo Documento'; ?>
 </h1>
 <!-- breadcrumb -->
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="?c=tipo_documento&a=index">Tipo Documento Index</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo URL_ROOT; ?>/tipo_documentos">Tipo Documento Index</a></li>
     <li class="breadcrumb-item active" aria-current="page">
-        <?php echo $tipo_documento->tipo_documento_codigo != null ? 'Editar '.$tipo_documento->tipo_documento_descripcion : 'Editar Tipo Documento'; ?>
+        <?php echo $context['tipo_documento']->tipo_documento_codigo != null ? 'Editar '.$context['tipo_documento']->tipo_documento_descripcion : 'Editar Tipo Documento'; ?>
     </li>
   </ol>
 </nav>
@@ -16,21 +17,21 @@
     <div class="card-body">
         <form
             id="frm-tipo_documento"
-            action="?c=tipo_documento&a=editar"
+            action="<?php echo URL_ROOT; ?>/tipo_documentos/editar/<?php echo $context['tipo_documento']->tipo_documento_codigo; ?>"
             method="POST"
             enctype="multipart/form-data"
         >
             <input
                 type="hidden"
                 name="tipo_documento_codigo"
-                value="<?php echo $tipo_documento->tipo_documento_codigo; ?>"
+                value="<?php echo $context['tipo_documento']->tipo_documento_codigo; ?>"
             />
             <div class="form-group">
                 <label>Descripción</label>
                 <input
                     type="text"
                     name="tipo_documento_descripcion"
-                    value="<?php echo $tipo_documento->tipo_documento_descripcion; ?>"
+                    value="<?php echo $context['tipo_documento']->tipo_documento_descripcion; ?>"
                     class="form-control"
                     placeholder="Pasaporte"
                     data-validacion-tipo="requerido"
@@ -43,7 +44,6 @@
         </form>
     </div>
 </div>
-
 <script>
     $(document).ready(function () {
         $("#frm-tipo_documento").submit(function () {
@@ -51,3 +51,4 @@
         });
     })
 </script>
+<?php require APP_ROOT.'/views/layout_under.php'; ?>

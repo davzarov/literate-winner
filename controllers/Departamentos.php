@@ -46,7 +46,7 @@
                 $departamento->departamento_descripcion = $_POST['departamento_descripcion'];
                 $departamento->pais_codigo = $_POST['pais_codigo'];
                 if($this->departamentoModel->Registrar($departamento)) {
-                    flash('departamento_mensaje', 'Se ha agregado correctamente.');
+                    flash('mensaje_flash', 'Se ha agregado correctamente.');
                     redirect('departamentos');
                 } else {
                     die('Ha ocurrido un error.');
@@ -65,7 +65,7 @@
                 $departamento->pais_codigo = $_POST['pais_codigo'];
 
                 if($this->departamentoModel->Actualizar($departamento)){
-                    flash('departamento_mensaje', 'Se ha modificado correctamente.');
+                    flash('mensaje_flash', 'Se ha modificado correctamente.');
                     redirect('departamentos');
                 } else {
                     die('Ha ocurrido un error.');
@@ -77,7 +77,7 @@
         {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if($this->departamentoModel->Eliminar($departamento_codigo)) {
-                    flash('departamento_mensaje', 'Se ha eliminado correctamente.');
+                    flash('mensaje_flash', 'Se ha eliminado correctamente.');
                     redirect('departamentos');
                 } else {
                     die('Ha ocurrido un error.');

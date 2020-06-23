@@ -1,7 +1,8 @@
+<?php require APP_ROOT.'/views/layout_upper.php'; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Alta de Géneros</h1>
     <a
-        href="?c=genero&a=nuevo"
+        href="<?php echo URL_ROOT; ?>/generos/nuevo"
         class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"
     >
         <i class="fas fa-plus fa-sm text-white-50"></i> Nuevo
@@ -29,14 +30,14 @@
             </tr>
             </tfoot>
             <tbody>
-            <?php foreach ($generos as $genero): ?>
+            <?php foreach ($context['generos'] as $genero): ?>
                 <tr>
                     <td><?php echo $genero->genero_codigo ?></td>
                     <td><?php echo $genero->genero_descripcion ?></td>
                     <td>
                         <a
                             class="btn btn-primary btn-icon-split btn-sm"
-                            href="?c=genero&a=ver&genero_codigo=<?php echo $genero->genero_codigo; ?>"
+                            href="<?php echo URL_ROOT; ?>/generos/ver/<?php echo $genero->genero_codigo; ?>"
                         >
                             <span class="icon text-white-50">
                                 <i class="fas fa-edit"></i>
@@ -47,9 +48,10 @@
                         </a>
                         &nbsp;
                         <a
-                            class="btn btn-danger btn-icon-split btn-sm"
-                            onclick="javascript:return confirm('¿Seguro de eliminar este registro?');"
-                            href="?c=genero&a=eliminar&genero_codigo=<?php echo $genero->genero_codigo; ?>"
+                            class="btn btn-danger btn-icon-split btn-sm confirm-modal"
+                            data-toggle="modal"
+                            data-action="<?php echo URL_ROOT; ?>/generos/eliminar/<?php echo $genero->genero_codigo; ?>"
+                            href="#confirmModal"
                         >
                             <span class="icon text-white-50">
                                 <i class="fas fa-trash"></i>
@@ -66,3 +68,15 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#confirmModal').on('show.bs.modal', function (event) {
+            var action = $(event.relatedTarget).data('action');
+            var modal = $(this);
+            modal.find('.modal-title').text('¿Seguro de eliminar este registro?');
+            modal.find('.modal-body').text('Ésta acción es irreversible, confirme para seguir adelante.');
+            modal.find('form').attr('action', action);
+        });
+    });
+</script>
+<?php require APP_ROOT.'/views/layout_under.php'; ?>

@@ -1,9 +1,10 @@
+<?php require APP_ROOT.'/views/layout_upper.php'; ?>
 <!-- header -->
 <h1 class="h3 mb-2 text-gray-800 mb-4">Nuevo Usuario</h1>
 <!-- breadcrumb -->
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="?c=usuario&a=index">Usuario Index</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo URL_ROOT; ?>/usuarios">Usuario Index</a></li>
     <li class="breadcrumb-item active" aria-current="page">Nuevo Usuario</li>
   </ol>
 </nav>
@@ -13,7 +14,7 @@
         <form
             id="frm-usuario"
             name="f1"
-            action="?c=usuario&a=guardar"
+            action="<?php echo URL_ROOT; ?>/usuarios/guardar"
             method="POST"
             enctype="multipart/form-data"
         >
@@ -22,7 +23,7 @@
                 <input
                     type="text"
                     name="usuario_login"
-                    value="<?php echo $usuario->usuario_login; ?>"
+                    value="<?php echo $context['usuario']->usuario_login; ?>"
                     class="form-control"
                     placeholder="Usuario"
                     data-validacion-tipo="requerido"
@@ -33,7 +34,7 @@
                 <input
                     type="password"
                     name="usuario_password"
-                    value="<?php echo $usuario->usuario_password; ?>"
+                    value="<?php echo $context['usuario']->usuario_password; ?>"
                     class="form-control"
                     placeholder="********"
                     data-validacion-tipo="requerido|min:8"
@@ -56,7 +57,6 @@
         </form>
     </div>
 </div>
-
 <script>
     $(document).ready(function () {
         $("#frm-usuario").submit(function () {
@@ -64,3 +64,4 @@
         });
     })
 </script>
+<?php require APP_ROOT.'/views/layout_under.php'; ?>

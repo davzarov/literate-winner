@@ -1,5 +1,4 @@
 <?php require APP_ROOT.'/views/layout_upper.php'; ?>
-<?php flash('ciudad_mensaje'); ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Alta de Ciudades</h1>
     <a

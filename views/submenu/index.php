@@ -1,7 +1,8 @@
+<?php require APP_ROOT.'/views/layout_upper.php'; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Alta de Submenus</h1>
     <a
-        href="?c=submenu&a=nuevo"
+        href="<?php echo URL_ROOT; ?>/submenus/nuevo"
         class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"
     >
         <i class="fas fa-plus fa-sm text-white-50"></i> Nuevo
@@ -33,7 +34,7 @@
             </tr>
             </tfoot>
             <tbody>
-            <?php foreach ($submenus as $submenu): ?>
+            <?php foreach ($context['submenus'] as $submenu): ?>
                 <tr>
                     <td><?php echo $submenu->submenu_codigo ?></td>
                     <td><?php echo $submenu->submenu_descripcion ?></td>
@@ -42,7 +43,7 @@
                     <td>
                         <a
                             class="btn btn-primary btn-icon-split btn-sm"
-                            href="?c=submenu&a=ver&submenu_codigo=<?php echo $submenu->submenu_codigo; ?>"
+                            href="<?php echo URL_ROOT; ?>/submenus/ver/<?php echo $submenu->submenu_codigo; ?>"
                         >
                             <span class="icon text-white-50">
                                 <i class="fas fa-edit"></i>
@@ -53,9 +54,10 @@
                         </a>
                         &nbsp;
                         <a
-                            class="btn btn-danger btn-icon-split btn-sm"
-                            onclick="javascript:return confirm('¿Seguro de eliminar este registro?');"
-                            href="?c=submenu&a=eliminar&submenu_codigo=<?php echo $submenu->submenu_codigo; ?>"
+                            class="btn btn-danger btn-icon-split btn-sm confirm-modal"
+                            data-toggle="modal"
+                            data-action="<?php echo URL_ROOT; ?>/submenus/eliminar/<?php echo $submenu->submenu_codigo; ?>"
+                            href="#confirmModal"
                         >
                             <span class="icon text-white-50">
                                 <i class="fas fa-trash"></i>
@@ -72,3 +74,15 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#confirmModal').on('show.bs.modal', function (event) {
+            var action = $(event.relatedTarget).data('action');
+            var modal = $(this);
+            modal.find('.modal-title').text('¿Seguro de eliminar este registro?');
+            modal.find('.modal-body').text('Ésta acción es irreversible, confirme para seguir adelante.');
+            modal.find('form').attr('action', action);
+        });
+    });
+</script>
+<?php require APP_ROOT.'/views/layout_under.php'; ?>

@@ -1,13 +1,14 @@
+<?php require APP_ROOT.'/views/layout_upper.php'; ?>
 <!-- header -->
 <h1 class="h3 mb-2 text-gray-800 mb-4">
-    <?php echo $persona->persona_codigo != null ? 'Editar '.$persona->persona_descripcion : 'Editar Persona'; ?>
+    <?php echo $context['persona']->persona_codigo != null ? 'Editar '.$context['persona']->persona_descripcion : 'Editar Persona'; ?>
 </h1>
 <!-- breadcrumb -->
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="?c=persona&a=index">Persona Index</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo URL_ROOT; ?>/personas">Persona Index</a></li>
     <li class="breadcrumb-item active" aria-current="page">
-        <?php echo $persona->persona_codigo != null ? 'Editar '.$persona->persona_descripcion : 'Editar Persona'; ?>
+        <?php echo $context['persona']->persona_codigo != null ? 'Editar '.$context['persona']->persona_descripcion : 'Editar Persona'; ?>
     </li>
   </ol>
 </nav>
@@ -16,7 +17,7 @@
     <div class="card-body">
         <form
             id="frm-persona"
-            action="?c=persona&a=editar"
+            action="<?php echo URL_ROOT; ?>/personas/editar/<?php echo $context['persona']->persona_codigo; ?>"
             method="POST"
             enctype="multipart/form-data"
         >
@@ -25,7 +26,7 @@
                     <input
                         type="hidden"
                         name="persona_codigo"
-                        value="<?php echo $persona->persona_codigo; ?>"
+                        value="<?php echo $context['persona']->persona_codigo; ?>"
                     />
                 </div>
             </div>
@@ -36,7 +37,7 @@
                         <input
                             type="text"
                             name="persona_nombre1"
-                            value="<?php echo $persona->persona_nombre1; ?>"
+                            value="<?php echo $context['persona']->persona_nombre1; ?>"
                             class="form-control"
                             placeholder="David"
                             data-validacion-tipo="requerido"
@@ -49,7 +50,7 @@
                         <input
                             type="text"
                             name="persona_nombre2"
-                            value="<?php echo $persona->persona_nombre2; ?>"
+                            value="<?php echo $context['persona']->persona_nombre2; ?>"
                             class="form-control"
                             placeholder="Ariel"
                             data-validacion-tipo="requerido"
@@ -64,7 +65,7 @@
                         <input
                             type="text"
                             name="persona_apellido1"
-                            value="<?php echo $persona->persona_apellido1; ?>"
+                            value="<?php echo $context['persona']->persona_apellido1; ?>"
                             class="form-control"
                             placeholder="Zárate"
                             data-validacion-tipo="requerido"
@@ -77,7 +78,7 @@
                         <input
                             type="text"
                             name="persona_apellido2"
-                            value="<?php echo $persona->persona_apellido2; ?>"
+                            value="<?php echo $context['persona']->persona_apellido2; ?>"
                             class="form-control"
                             placeholder="Oviedo"
                             data-validacion-tipo="requerido"
@@ -95,8 +96,13 @@
                             required
                         >
                             <option value="">Seleccione un Tipo Persona</option>
-                            <?php foreach ($tipos_persona as $tipo_persona): ?>
-                                <option value="<?php echo $tipo_persona->tipo_persona_codigo; ?>">
+                            <?php foreach ($context['tipos_persona'] as $tipo_persona): ?>
+                                <option
+                                    value="<?php echo $tipo_persona->tipo_persona_codigo; ?>"
+                                    <?php if($tipo_persona->tipo_persona_codigo == $context['persona']->tipo_persona_codigo):
+                                        echo("selected"); ?>
+                                    <?php endif; ?>
+                                >
                                     <?php echo $tipo_persona->tipo_persona_descripcion; ?>
                                 </option>
                             <?php endforeach; ?>
@@ -112,8 +118,13 @@
                             required
                         >
                             <option value="">Seleccione un Tipo Documento</option>
-                            <?php foreach ($tipos_documento as $tipo_documento): ?>
-                                <option value="<?php echo $tipo_documento->tipo_documento_codigo; ?>">
+                            <?php foreach ($context['tipos_documento'] as $tipo_documento): ?>
+                                <option
+                                    value="<?php echo $tipo_documento->tipo_documento_codigo; ?>"
+                                    <?php if($tipo_documento->tipo_documento_codigo == $context['persona']->tipo_documento_codigo):
+                                        echo("selected"); ?>
+                                    <?php endif; ?>
+                                >
                                     <?php echo $tipo_documento->tipo_documento_descripcion; ?>
                                 </option>
                             <?php endforeach; ?>
@@ -131,8 +142,13 @@
                             required
                         >
                             <option value="">Seleccione un Género</option>
-                            <?php foreach ($generos as $genero): ?>
-                                <option value="<?php echo $genero->genero_codigo; ?>">
+                            <?php foreach ($context['generos'] as $genero): ?>
+                                <option
+                                    value="<?php echo $genero->genero_codigo; ?>"
+                                    <?php if($genero->genero_codigo == $context['persona']->genero_codigo):
+                                        echo("selected"); ?>
+                                    <?php endif; ?>
+                                >
                                     <?php echo $genero->genero_descripcion; ?>
                                 </option>
                             <?php endforeach; ?>
@@ -148,8 +164,13 @@
                             required
                         >
                             <option value="">Seleccione un Barrio</option>
-                            <?php foreach ($barrios as $barrio): ?>
-                                <option value="<?php echo $barrio->barrio_codigo; ?>">
+                            <?php foreach ($context['barrios'] as $barrio): ?>
+                                <option
+                                    value="<?php echo $barrio->barrio_codigo; ?>"
+                                    <?php if($barrio->barrio_codigo == $context['persona']->barrio_codigo):
+                                        echo("selected"); ?>
+                                    <?php endif; ?>
+                                >
                                     <?php echo $barrio->barrio_descripcion; ?>
                                 </option>
                             <?php endforeach; ?>
@@ -164,7 +185,6 @@
         </form>
     </div>
 </div>
-
 <script>
     $(document).ready(function () {
         $("#frm-persona").submit(function () {
@@ -172,3 +192,4 @@
         });
     })
 </script>
+<?php require APP_ROOT.'/views/layout_under.php'; ?>

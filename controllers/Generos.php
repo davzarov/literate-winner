@@ -42,7 +42,7 @@
                 $genero->genero_descripcion = $_POST['genero_descripcion'];
 
                 if($this->generoModel->Registrar($genero)) {
-                    flash('genero_mensaje', 'Se ha agregado correctamente.');
+                    flash('mensaje_flash', 'Se ha agregado correctamente.');
                     redirect('generos');
                 } else {
                     die('Ha ocurrido un error.');
@@ -60,7 +60,7 @@
                 $genero->genero_descripcion = $_POST['genero_descripcion'];
 
                 if($this->generoModel->Actualizar($genero)) {
-                    flash('genero_mensaje', 'Se ha modificado correctamente.');
+                    flash('mensaje_flash', 'Se ha modificado correctamente.');
                     redirect('generos');
                 } else {
                     die('Ha ocurrido un error.');
@@ -72,7 +72,7 @@
         {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if($this->generoModel->Eliminar($genero_codigo)) {
-                    flash('genero_mensaje', 'Se ha eliminado correctamente.');
+                    flash('mensaje_flash', 'Se ha eliminado correctamente.');
                     redirect('generos');
                 } else {
                     die('Ha ocurrido un error.');

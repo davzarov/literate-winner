@@ -43,7 +43,7 @@
                 $menu->menu_enlace = $_POST['menu_enlace'];
 
                 if($this->menuModel->Registrar($menu)) {
-                    flash('menu_mensaje', 'Se ha agregado correctamente.');
+                    flash('mensaje_flash', 'Se ha agregado correctamente.');
                     redirect('menus');
                 } else {
                     die('Ha ocurrido un error.');
@@ -62,7 +62,7 @@
                 $menu->menu_enlace = $_POST['menu_enlace'];
                 
                 if($this->menuModel->Actualizar($menu)) {
-                    flash('menu_mensaje', 'Se ha modificado correctamente.');
+                    flash('mensaje_flash', 'Se ha modificado correctamente.');
                     redirect('menus');
                 } else {
                     die('Ha ocurrido un error.');
@@ -74,7 +74,7 @@
         {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if($this->menuModel->Eliminar($menu_codigo)) {
-                    flash('menu_mensaje', 'Se ha eliminado correctamente.');
+                    flash('mensaje_flash', 'Se ha eliminado correctamente.');
                     redirect('menus');
                 } else {
                     die('Ha ocurrido un error.');

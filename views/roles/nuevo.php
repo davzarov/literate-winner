@@ -1,9 +1,10 @@
+<?php require APP_ROOT.'/views/layout_upper.php'; ?>
 <!-- header -->
 <h1 class="h3 mb-2 text-gray-800 mb-4">Nuevo Rol</h1>
 <!-- breadcrumb -->
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="?c=roles&a=index">Rol Index</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo URL_ROOT; ?>/roles">Rol Index</a></li>
     <li class="breadcrumb-item active" aria-current="page">Nuevo Rol</li>
   </ol>
 </nav>
@@ -13,7 +14,7 @@
         <form
             id="frm-roles"
             name="f1"
-            action="?c=roles&a=guardar"
+            action="<?php echo URL_ROOT; ?>/roles/guardar"
             method="POST"
             enctype="multipart/form-data"
         >
@@ -22,7 +23,7 @@
                 <input
                     type="text"
                     name="rol_descripcion"
-                    value="<?php echo $rol->rol_descripcion; ?>"
+                    value="<?php echo $context['rol']->rol_descripcion; ?>"
                     class="form-control"
                     placeholder="Administrador"
                     data-validacion-tipo="requerido"
@@ -36,7 +37,7 @@
                     required
                 >
                     <option value="">Seleccione un Usuario</option>
-                    <?php foreach ($usuarios as $usuario): ?>
+                    <?php foreach ($context['usuarios'] as $usuario): ?>
                         <option value="<?php echo $usuario->usuario_codigo; ?>">
                             <?php echo $usuario->usuario_login; ?>
                         </option>
@@ -51,7 +52,7 @@
                     required
                 >
                     <option value="">Seleccione una Persona</option>
-                    <?php foreach ($personas as $persona): ?>
+                    <?php foreach ($context['personas'] as $persona): ?>
                         <option value="<?php echo $persona->persona_codigo; ?>">
                             <?php echo $persona->persona_nombre1 . ' ' . $persona->persona_apellido1; ?>
                         </option>
@@ -65,7 +66,6 @@
         </form>
     </div>
 </div>
-
 <script>
     $(document).ready(function () {
         $("#frm-roles").submit(function () {
@@ -73,3 +73,4 @@
         });
     })
 </script>
+<?php require APP_ROOT.'/views/layout_under.php'; ?>

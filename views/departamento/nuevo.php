@@ -1,9 +1,10 @@
+<?php require APP_ROOT.'/views/layout_upper.php'; ?>
 <!-- header -->
 <h1 class="h3 mb-2 text-gray-800 mb-4">Nuevo Departamento</h1>
 <!-- breadcrumb -->
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="?c=departamento&a=index">Departamento Index</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo URL_ROOT; ?>/departamentos">Departamento Index</a></li>
     <li class="breadcrumb-item active" aria-current="page">Nuevo Departamento</li>
   </ol>
 </nav>
@@ -13,7 +14,7 @@
         <form
             id="frm-departamento"
             name="f1"
-            action="?c=departamento&a=guardar"
+            action="<?php echo URL_ROOT; ?>/departamento/guardar"
             method="POST"
             enctype="multipart/form-data"
         >
@@ -22,7 +23,7 @@
                 <input
                     type="text"
                     name="departamento_descripcion"
-                    value="<?php echo $departamento->departamento_descripcion; ?>"
+                    value="<?php echo $context['departamento']->departamento_descripcion; ?>"
                     class="form-control"
                     placeholder="Central"
                     data-validacion-tipo="requerido"
@@ -36,7 +37,7 @@
                     required
                 >
                     <option value="">Seleccione un País</option>
-                    <?php foreach ($paises as $pais): ?>
+                    <?php foreach ($context['paises'] as $pais): ?>
                         <option value="<?php echo $pais->pais_codigo; ?>">
                             <?php echo $pais->pais_descripcion; ?>
                         </option>
@@ -50,7 +51,6 @@
         </form>
     </div>
 </div>
-
 <script>
     $(document).ready(function () {
         $("#frm-departamento").submit(function () {
@@ -58,3 +58,4 @@
         });
     })
 </script>
+<?php require APP_ROOT.'/views/layout_under.php'; ?>

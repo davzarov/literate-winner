@@ -52,7 +52,7 @@
                 $rol->persona_codigo = $_POST['persona_codigo'];
 
                 if($this->rolModel->Registrar($rol)) {
-                    flash('roles_mensaje', 'Se ha agregado correctamente.');
+                    flash('mensaje_flash', 'Se ha agregado correctamente.');
                     redirect('roles');
                 } else {
                     die('Ha ocurrido un error');
@@ -72,7 +72,7 @@
                 $rol->persona_codigo = $_POST['persona_codigo'];
 
                 if($this->rolModel->Actualizar($rol)) {
-                    flash('roles_mensaje', 'Se ha modificado correctamente.');
+                    flash('mensaje_flash', 'Se ha modificado correctamente.');
                     redirect('roles');
                 } else {
                     die('Ha ocurrido un error.');
@@ -84,7 +84,7 @@
         {
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if($this->rolModel->Eliminar($rol_codigo)) {
-                    flash('roles_mensaje', 'Se ha eliminado correctamente.');
+                    flash('mensaje_flash', 'Se ha eliminado correctamente.');
                     redirect('roles');
                 } else {
                     die('Ha ocurrido un error.');
