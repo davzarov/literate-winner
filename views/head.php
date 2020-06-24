@@ -11,6 +11,7 @@
 />
 <!-- custom styles -->
 <link rel="stylesheet" href="<?php echo URL_ROOT; ?>/assets/css/sb-admin-2.min.css">
+<link rel="stylesheet" href="<?php echo URL_ROOT; ?>/assets/css/custom.css">
 <!-- JQuery -->
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"

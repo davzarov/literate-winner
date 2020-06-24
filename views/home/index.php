@@ -1,10 +1,10 @@
 <?php require APP_ROOT.'/views/layout_upper.php'; ?>
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+    <h1 class="h3 mb-0 text-gray-800">Tablero</h1>
 </div>
 <div class="row">
     <?php foreach ($context['menus'] as $menu): ?>
-        <div class="col-xs-3 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <a href="<?php echo $menu->menu_enlace; ?>" class="card-body text-decoration-none">
                     <div class="row no-gutters align-items-center">

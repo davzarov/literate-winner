@@ -10,16 +10,16 @@
 
         public function __CONSTRUCT()
         {
-            $url = $this->obtenerUrl(); // if(!is_null($url)) {}
+            $url = $this->obtenerUrl();
             // Buscar el controlador en el directorio de controladores
-            if(file_exists('../controllers/' . ucwords($url[0]) . '.php')) {
+            if(is_array($url) && file_exists("../controllers/" . ucwords($url[0]) . '.php')) {
                 // Si existe, lo asignamos como el controlador actual
                 $this->currentController = ucwords($url[0]);
                 // Destruímos el índice 0
                 unset($url[0]);
             }
             // Importamos e instanciamos el controlador actual
-            require_once('../controllers/' . $this->currentController . '.php');
+            require_once("../controllers/" . $this->currentController . '.php');
             $this->currentController = new $this->currentController;
             // Verificamos si existe la porción del método en la url
             if(isset($url[1])) {
