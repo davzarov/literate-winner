@@ -22,6 +22,16 @@
             return $this->db->resultSet();
         }
 
+        public function ListarPorPais($pais_codigo)
+        {
+            $this->db->query(
+                "SELECT * FROM departamento
+                WHERE pais_codigo=:pais_codigo"
+            );
+            $this->db->bind(':pais_codigo', intval($pais_codigo));
+            return $this->db->resultSet();
+        }
+
         public function Obtener($departamento_codigo)
         {
             $this->db->query(

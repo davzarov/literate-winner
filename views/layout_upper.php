@@ -14,3 +14,4 @@
                 <div id="content">
                 <?php include_once('topbar.php'); ?>
                     <div class="container-fluid">
+                        <?php flash('mensaje_flash'); ?>

@@ -11,6 +11,9 @@
         public function __CONSTRUCT()
         {
             $url = $this->obtenerUrl();
+            // if(strpos($url[0], '_') !== false) {
+            //     separar por carácter encontrado, capitalizar y unir en una cadena
+            // }
             // Buscar el controlador en el directorio de controladores
             if(is_array($url) && file_exists("../controllers/" . ucwords($url[0]) . '.php')) {
                 // Si existe, lo asignamos como el controlador actual

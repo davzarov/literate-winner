@@ -33,7 +33,7 @@
                 <label>País</label>
                 <select
                     name="pais_codigo"
-                    class="form-control"
+                    class="custom-select d-block w-100"
                     required
                 >
                     <option value="">Seleccione un País</option>

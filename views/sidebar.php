@@ -43,7 +43,8 @@
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Bases de Datos:</h6>
-        <a class="collapse-item" href="<?php echo URL_ROOT; ?>">Entidades</a>
+        <a class="collapse-item" href="<?php echo URL_ROOT; ?>/home/entidades">Entidades</a>
+        <a class="collapse-item" href="<?php echo URL_ROOT; ?>/home/localidades">Localidades</a>
         <div class="collapse-divider"></div>
         <h6 class="collapse-header">Sesión de Usuario:</h6>
         <a class="collapse-item" href="<?php echo URL_ROOT; ?>">Salir</a>

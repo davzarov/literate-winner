@@ -13,7 +13,7 @@
         public function Listar()
         {
             $this->db->query("SELECT * FROM genero");
-            return $this->db->resutlSet();
+            return $this->db->resultSet();
         }
 
         public function Obtener($genero_codigo)

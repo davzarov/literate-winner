@@ -18,6 +18,11 @@
             $this->view('barrio/index', $context);
         }
 
+        public function barriosPorCiudad($ciudad_codigo)
+        {
+            die(json_encode($this->barrioModel->ListarPorCiudad($ciudad_codigo)));
+        }
+
         public function ver($barrio_codigo)
         {
             $barrio = $this->barrioModel->Obtener($barrio_codigo);

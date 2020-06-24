@@ -18,6 +18,11 @@
             $this->view('departamento/index', $context);
         }
 
+        public function departamentosPorPais($pais_codigo)
+        {
+            die(json_encode($this->departamentoModel->ListarPorPais($pais_codigo)));
+        }
+
         public function ver($departamento_codigo)
         {
             $departamento = $this->departamentoModel->Obtener($departamento_codigo);

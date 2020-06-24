@@ -22,6 +22,16 @@
             return $this->db->resultSet();
         }
 
+        public function ListarPorCiudad($ciudad_codigo)
+        {
+            $this->db->query(
+                "SELECT * FROM barrio
+                WHERE ciudad_codigo=:ciudad_codigo"
+            );
+            $this->db->bind(':ciudad_codigo', intval($ciudad_codigo));
+            return $this->db->resultSet();
+        }
+
         public function Obtener($barrio_codigo)
         {
             $this->db->query(

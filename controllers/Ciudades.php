@@ -18,6 +18,11 @@
             $this->view('ciudad/index', $context);
         }
 
+        public function ciudadesPorDepartamento($departamento_codigo)
+        {
+            die(json_encode($this->ciudadModel->ListarPorDepartamento($departamento_codigo)));
+        }
+
         public function ver($ciudad_codigo)
         {
             $ciudad = $this->ciudadModel->Obtener($ciudad_codigo);

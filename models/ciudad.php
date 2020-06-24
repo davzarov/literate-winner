@@ -22,6 +22,16 @@
             return $this->db->resultSet();
         }
 
+        public function ListarPorDepartamento($departamento_codigo)
+        {
+            $this->db->query(
+                "SELECT * FROM ciudad
+                WHERE departamento_codigo=:departamento_codigo"
+            );
+            $this->db->bind(':departamento_codigo', intval($departamento_codigo));
+            return $this->db->resultSet();
+        }
+
         public function Obtener($ciudad_codigo)
         {
             $this->db->query(
