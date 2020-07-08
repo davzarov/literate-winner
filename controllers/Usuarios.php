@@ -24,6 +24,74 @@
             $this->view('usuario/editar', $context);
         }
 
+        public function crearSesion($usuario)
+        {
+            // guardamos las siguientes variables en sesión
+            $_SESSION['usuario_codigo'] = $usuario->usuario_codigo;
+            $_SESSION['usuario_login'] = $usuario->usuario_login;
+            // redireccionamos a inicio
+            redirect('home/index');
+        }
+
+        public function tieneSesion()
+        {
+            // si el usuario tiene sesión activa
+            if(isset($_SESSION['usuario_codigo'])) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function ingresar()
+        {
+            // si el usuario tiene sesión
+            if($this->tieneSesion()) {
+                // lo redireccionamos al inicio
+                redirect('home/index');
+            }
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                $credenciales = [
+                    'usuario_login' => $_POST['usuario_login'];
+                    'usuario_password' => $_POST['usuario_password'];
+                ];
+                // si el usuario existe
+                if($this->usuarioModel->ExisteUsuario($credenciales['usuario_login'])) {
+                    // autenticamos el usuario
+                    $usuarioAutenticado = $this->usuarioModel->Autenticar(
+                        $credenciales['usuario_login'],
+                        $credenciales['usuario_password']
+                    );
+                    // si tenemos el usuario autenticado
+                    if($usuarioAutenticado) {
+                        // creamos la sesion de usuario
+                        $this->crearSesion($usuarioAutenticado);
+                    } else {
+                        flash('mensaje_flash', 'La contraseña no es correcta.');
+                        die;
+                    }
+                } else {
+                    flash('mensaje_flash', 'El usuario no existe.');
+                    die;
+                }
+            } else {
+                $context = [
+                    'usuario' => new Usuario()
+                ];
+                $this->view('usuario/ingresar', $context);
+            }
+        }
+
+        public function salir()
+        {
+            unset($_SESSION['usuario_codigo']);
+            unset($_SESSION['usuario_login']);
+            session_destroy()
+            redirect('usuario/ingresar');
+        }
+
         public function nuevo()
         {
             $context = [

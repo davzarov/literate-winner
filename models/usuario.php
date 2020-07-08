@@ -27,6 +27,36 @@
             return $this->db->result();
         }
 
+        public function ExisteUsuario($usuario_login)
+        {
+            $this->db->query(
+                "SELECT * FROM usuario
+                WHERE usuario_login=usuario_login"
+            );
+            $this->db->bind(':usuario_login', $usuario_login);
+            $this->db->execute();
+            if($this->db->rowCount() > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function Autenticar($usuario_login, $usuario_password)
+        {
+            $this->db->query(
+                "SELECT * FROM usuario
+                WHERE usuario_login=usuario_login"
+            );
+            $this->db->bind(':usuario_login', $usuario_login);
+            $usuario = $this->db->result();
+            if(password_verify($usuario_password, $usuario->usuario_password)) {
+                return $usuario;
+            } else {
+                return false;
+            }
+        }
+
         public function Registrar(Usuario $data)
         {
             $this->db->query(
