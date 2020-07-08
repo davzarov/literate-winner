@@ -1,11 +1,13 @@
-.sidebar
-.sidebar-brand
-.sidebar-brand-icon {
+.sidebar .sidebar-brand .sidebar-brand-icon {
   display: none;
 }
 
-.sidebar.toggled
-.sidebar-brand
-.sidebar-brand-icon {
+.sidebar.toggled .sidebar-brand .sidebar-brand-icon {
   display: block;
+}
+
+.bg-login-image {
+  background: url(https://via.placeholder.com/600x800.png);
+  background-position: center;
+  background-size: cover;
 }

@@ -54,8 +54,8 @@
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
                 $credenciales = [
-                    'usuario_login' => $_POST['usuario_login'];
-                    'usuario_password' => $_POST['usuario_password'];
+                    'usuario_login' => $_POST['usuario_login'],
+                    'usuario_password' => $_POST['usuario_password']
                 ];
                 // si el usuario existe
                 if($this->usuarioModel->ExisteUsuario($credenciales['usuario_login'])) {
@@ -88,7 +88,7 @@
         {
             unset($_SESSION['usuario_codigo']);
             unset($_SESSION['usuario_login']);
-            session_destroy()
+            session_destroy();
             redirect('usuario/ingresar');
         }
 
